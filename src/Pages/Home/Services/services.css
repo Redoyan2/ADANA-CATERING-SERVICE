@@ -1,0 +1,27 @@
+
+
+.service-title{
+    text-align: center;
+    
+    
+}
+
+
+.services{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+}
+.service{
+    text-align: center;
+    padding: 10px;
+    border: 1px solid crimson;
+    border-radius: 10px;
+}
+.service img{
+    border-radius: 10px 10px 5px 5px ;
+}
+.service button{
+    padding-right: 30px ;
+    padding-left: 30px;
+}

@@ -6,13 +6,16 @@ const Header = () => {
     return (
         <div>
             <>
-                <Navbar bg="info" variant="dark">
+                <Navbar bg="info" variant="dark" expand={true}>
                     <Container>
-                        <Navbar.Brand href="#home">ADANA CATERING SERVICE</Navbar.Brand>
+                        <Navbar.Brand href="home">ADANA CATERING SERVICE</Navbar.Brand>
                         <Nav className="ms-auto">
-                            <Nav.Link href="home" >Home</Nav.Link>
+                            <Nav.Link href="home"  >Home</Nav.Link>
                             <Nav.Link href="services">Services</Nav.Link>
-                            <Nav.Link href="#pricing"></Nav.Link>
+                            <Nav.Link href="about">About</Nav.Link>
+                            <Nav.Link href="blog">Blogs</Nav.Link>
+                            <Nav.Link href="contact">Contact Us</Nav.Link>
+                            
                         </Nav>
                     </Container>
                 </Navbar>

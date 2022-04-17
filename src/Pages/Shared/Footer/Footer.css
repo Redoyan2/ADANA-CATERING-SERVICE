@@ -1,0 +1,23 @@
+.footer{
+    color: black;
+    text-align: center;
+    background-color: rgb(25, 225, 240);
+    margin-top: 30px;
+}
+
+.footer-section{
+    display: grid;
+    grid-template-columns:repeat(3, 1fr);
+    grid-gap: 20px ;
+}
+
+.footer-item{
+    padding: 15px;
+    text-align: left;
+   
+}
+.footer-bottom{
+    background-color: aquamarine;
+    padding: 15px;
+    
+}
