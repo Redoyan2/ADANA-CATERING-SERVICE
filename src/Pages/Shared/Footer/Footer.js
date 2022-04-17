@@ -8,16 +8,16 @@ const Footer = () => {
             <div className='footer-section'>
                 <div className='footer-item'>
                     <h1>Adana Catering </h1>
-                    <li>Help</li>
-                    <li>Order Status</li>
-                    <li>Delivery Choice</li>
-                    <li>Payment Option</li>
+                    <ul>Help</ul>
+                    <ul>Order Status</ul>
+                    <ul>Delivery Choice</ul>
+                    
                 </div>
                 <div className='footer-item'>
                     <h1>Contact us</h1>
-                    <li>47/5, Nikunjo-1, Dhaka-1229</li>
-                    <li>01754862546</li>
-                    <li>info@adana.com</li>
+                    <ul>47/5, Nikunjo-1, Dhaka-1229</ul>
+                    <ul>01754862546</ul>
+                    <ul>info@adana.com</ul>
                 </div>
                 <div className='footer-item'>
                     <h1>Working hours</h1>

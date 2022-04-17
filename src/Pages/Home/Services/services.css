@@ -15,7 +15,7 @@
 .service{
     text-align: center;
     padding: 10px;
-    border: 1px solid crimson;
+    margin: 10px;
     border-radius: 10px;
 }
 .service img{
