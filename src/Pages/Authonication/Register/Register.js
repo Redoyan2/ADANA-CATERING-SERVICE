@@ -1,36 +1,76 @@
-import React from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { useCreateUserWithEmailAndPassword, useUpdateProfile } from 'react-firebase-hooks/auth';
+import './Register.css';
+import auth from '../../../firebase.init';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import Loading from '../../Shared/Loding/Loading';
 
 const Register = () => {
+    const [agree, setAgree] = useState(false);
+    const [
+        createUserWithEmailAndPassword,
+        user,
+        loading,
+        error,
+    ] = useCreateUserWithEmailAndPassword(auth, { sendEmailVerification: true });
+    const [updateProfile, updating, ] = useUpdateProfile(auth);
+
+    const navigate = useNavigate();
+
+
+    const navigateLogin = () => {
+        navigate('/login');
+    }
+    let errorCase;
+    if (error) {
+        errorCase = <p className='text-danger'>Error: {error?.message}</p>
+    }
+
+    if (loading || updating) {
+        return <Loading></Loading>
+    }
+
+    if (user) {
+        console.log('user', user);
+    }
+
+    const handleRegister = async (event) => {
+        event.preventDefault();
+        const name = event.target.name.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+
+        await createUserWithEmailAndPassword(email, password);
+        await updateProfile({ displayName: name });
+        console.log('Updated profile');
+        navigate('/home');
+    }
+
     return (
-        <div>
-            <div className='container w-50 mx-auto'>
+        <div className='register-form'>
+            <h2 style={{ textAlign: 'center' }}>Please Register</h2>
+            <form onSubmit={handleRegister}>
+                <input type="text" name="name" id="" placeholder='Your Name' />
 
-                <h1 className='text-info text-center mt-3'>Please Register </h1>
-                <Form >
-                    <Form.Group className="mb-3" controlId="formBasicName">
-                        <Form.Control type="text" placeholder="Enter your name" required />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicEmail">
-                        <Form.Control type="email" placeholder="Enter email" required />
-                    </Form.Group>
-                    <Form.Group className="mb-3" controlId="formBasicPassword">
-                        <Form.Control type="password" placeholder="Password" required />
-                    </Form.Group>
-                    <Button variant="info w-50 mx-auto d-block mb-3" type="submit">
-                        Register
-                    </Button>
-                </Form>
+                <input type="email" name="email" id="" placeholder='Email Address' required />
 
-                <p>Already have an account? <Link to="/login" className='text-info pe-auto text-decoration-none' >Please Login</Link> </p>
-                <p>Forget Password? <button className='btn btn-link text-info pe-auto text-decoration-none' >Reset Password</button> </p>
-
+                <input type="password" name="password" id="" placeholder='Password' required />
+                <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
+                <label className={`ps-2 ${agree ? '' : 'text-danger'}`} htmlFor="terms">Accept all terms and condition </label>
+                <input
+                    disabled={!agree}
+                    className='w-50 mx-auto btn btn-primary mt-2'
+                    type="submit"
+                    value="Register" />
+            </form>
+            <div className='text-center'>
+                {errorCase}
             </div>
+            <p>Already have an account? <Link to="/login" className='text-info pe-auto text-decoration-none' onClick={navigateLogin}>Please Login</Link> </p>
             <SocialLogin></SocialLogin>
         </div>
     );
 };
 
-export default Register; 
+export default Register;
