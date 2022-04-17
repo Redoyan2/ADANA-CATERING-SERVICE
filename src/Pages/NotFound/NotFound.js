@@ -1,9 +1,10 @@
 import React from 'react';
+import notFoundImg from '../../Images/NotFound/notFound-1.webp';
 
 const NotFound = () => {
     return (
-        <div>
-            <h1>Pages Not Found</h1>
+        <div className='text-center'>
+            <img className='w-50 ' src={notFoundImg} alt="" />
         </div>
     );
 };
